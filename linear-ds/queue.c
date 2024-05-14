@@ -10,7 +10,6 @@ struct Queue {
     int length;
 };
 
-
 bool is_full(struct Queue *queue) {
 
     return queue->rear - queue->top == queue->length;
@@ -55,11 +54,11 @@ void print_queue(struct Queue *queue) {
 int main() {
 
 
-    struct Queue *queue = malloc(5 * sizeof(struct Queue));
+    struct Queue *queue = malloc(2 * sizeof(struct Queue));
     queue->length = 5;
     queue->rear = 0;
     queue->top = 0;
-    queue->elements = (int *) malloc(5 * sizeof(int));
+    queue->elements = (int *) malloc(2 * sizeof(int));
 
     enqueue(queue, 10);
     enqueue(queue, 20);
@@ -77,6 +76,7 @@ int main() {
 
     print_queue(queue);
 
+    free(queue->elements);
     free(queue);
 
     return 0;
