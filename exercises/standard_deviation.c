@@ -3,7 +3,6 @@
 #include <math.h>
 #include <time.h>
 
-int mpow(int element, int base);
 void initialize_array(int *array, int size);
 int get_arithmetic_mean(int *array, int size);
 double get_standard_deviation(int *array, int arithmetic_mean, int size);
@@ -15,10 +14,10 @@ int main() {
     int *array = (int *) calloc(size, sizeof(int));
     initialize_array(array, size);
 
-    float arithmetic_mean = get_arithmetic_mean(array, size);
-    float sd = get_standard_deviation(array, arithmetic_mean, size);
+    int arithmetic_mean = get_arithmetic_mean(array, size);
+    double sd = get_standard_deviation(array, arithmetic_mean, size);
 
-    printf("Standard deviation: %.2f\n", sd);
+    printf("Standard deviation: %lf\n", sd);
 
     free(array);
     return 0;
