@@ -31,6 +31,7 @@ int main() {
 
     destroy_matrix(matrix_a, n_rows, n_cols);
     destroy_matrix(matrix_b, n_rows, n_cols);
+    destroy_matrix(matrix_result, n_rows, n_cols);
     return 0;
 }
 
