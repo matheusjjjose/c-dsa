@@ -3,9 +3,9 @@
 #include <time.h>
 
 void print(int **matrix, int n_rows, int n_cols);
-void allocate_matrix(int **matrix, int n_rows, int n_cols);
+void allocate_memory(int **matrix, int n_rows, int n_cols);
 void initialize_matrix(int **matrix, int n_rows, int n_cols);
-void destroy_matrix(int **matrix, int n_rows, int n_cols);
+void free_memory(int **matrix, int n_rows, int n_cols);
 int** sum_matrix(int **matrix_a, int **matrix_b, int n_rows, int n_cols);
 
 int main() {
@@ -29,9 +29,9 @@ int main() {
 
     print(matrix_result, n_rows, n_cols);
 
-    destroy_matrix(matrix_a, n_rows, n_cols);
-    destroy_matrix(matrix_b, n_rows, n_cols);
-    destroy_matrix(matrix_result, n_rows, n_cols);
+    free_memory(matrix_a, n_rows, n_cols);
+    free_memory(matrix_b, n_rows, n_cols);
+    free_memory(matrix_result, n_rows, n_cols);
     return 0;
 }
 
@@ -47,7 +47,7 @@ void print(int **matrix, int n_rows, int n_cols) {
     }
 }
 
-void allocate_matrix(int **matrix, int n_rows, int n_cols) {
+void allocate_memory(int **matrix, int n_rows, int n_cols) {
 
     for (int row=0; row < n_rows; row++) {
         matrix[row] = (int *) malloc(n_cols * sizeof(int));
@@ -58,7 +58,7 @@ void allocate_matrix(int **matrix, int n_rows, int n_cols) {
 
 void initialize_matrix(int **matrix, int n_rows, int n_cols) {
 
-    allocate_matrix(matrix, n_rows, n_cols);
+    allocate_memory(matrix, n_rows, n_cols);
 
     for (int row=0; row < n_rows; row++) {
         for (int col=0; col<n_cols; col++) {
@@ -72,7 +72,7 @@ void initialize_matrix(int **matrix, int n_rows, int n_cols) {
 int** sum_matrix(int **matrix_a, int **matrix_b, int n_rows, int n_cols) {
 
     int **matrix_result = (int **) malloc(n_rows * sizeof(int*));
-    allocate_matrix(matrix_result, n_rows, n_cols);
+    allocate_memory(matrix_result, n_rows, n_cols);
 
     for (int row = 0; row < n_rows; row++) {
         for (int col=0; col<n_cols; col++) {
@@ -83,7 +83,7 @@ int** sum_matrix(int **matrix_a, int **matrix_b, int n_rows, int n_cols) {
     return matrix_result;
 }
 
-void destroy_matrix(int **matrix, int n_rows, int n_cols) {
+void free_memory(int **matrix, int n_rows, int n_cols) {
 
     for (int row=0; row < n_rows; row++) {
         free(matrix[row]);
